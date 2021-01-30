@@ -154,22 +154,125 @@ delay in the game and is exported
 
 ### `usePlayer` 
 
+imports the TETROMINOS and randomTeromino function from the tetrominos file
+as well as the stage_width and checkCollision from gameHelpers file
+
+creates a function usePlayer to be exported as a function 
+it starts off with declaring the player as the TETROMINOS is called to set the player via useState
+while coloided is set to ralse
+
+the function rotate is declared with matrix and the value for direction 
+
+the function playerRotate is declared and this function the reason the blocks persist once a piece colides
+with with a block or a border the json records it to the instance and the block position is cloned and left there 
+until the row is completed
+
+the function updatePlayerPos is what updates player pos as time ticks
+
+resetPlayer uses a callback to set the start position for the next piece and calls another 
+tetromino block 
+
+every function is then returned from this function/hook.
+
 ### `useStage` 
+
+imports the createStage from gameHelpers file to use to create the stage with
+  const [stage, setStage] = useState(createStage());
+  const [rowsCleared, setRowsCleared] = useState(0);
+  
+inside of the useStage function that is to be exported
+inside of the useEffect which meant to update the visuals and stage after everything has 
+been rendered.  
+
+function updateStage declared which is used to flush the stage and 
+clear the rows with newStage declared then new block is pulled and moved into 
+the stage and descents in the newStage.
+when the piece colides with the border or piece newStage is called and the player position
+is reset.
+
+set stage is continuously called to keep updating then finally the
+stage, setStage and the rowsCleared is returned.   
 
 # pages
 
 ## AboutPage
 
-## Projector
+This page is set in browser router in and via link it reached in the main
+App.js in the link this is one the options to switch back and forth between this and the instuctions
+The main purpose is to present a link to show how to create the game
 
+## Instruction
+
+This page is set in browser router in and via link it reached in the main
+App.js in the link this is one the options to switch back and forth between this and the about page
+The main purpose is to present a link to show how to create the game
 
 # App.js
 
+The main app where the program in all is being run
+login and register components care called here as well as the rightSide
+as well as the Tetris (game) component.
+
+the browserRouter, Switch, Route, and Link are imported from react-router-dom
+the AboutPage and Instructions are both imported from the pages folder
+
+the app component is declared with propss and an internal state such as isLogginActive:true
+which is the switch for login and register 
+
+changeState() is the part that handles switch the states back and forth between login and register
+
+inside the rendering 
+    const { isLogginActive } = this.state;
+    const current = isLogginActive ? "Register" : "Login";
+    const currentActive = isLogginActive ? "login" : "register";
+are declarations for the states and the buttons as based the current active state
+
+below the main program is rendered with the main class being App
+followed by the nav class with the css has been moved to the right side of the page to
+properly cover the changing information with BrowserRouter, Link, Switch and Route inside
+
+Afterward the main tetris component is called to cover the main field on the left and center 
+side of the screen.
+
+on the bottom right is the login class with the class container that holds both
+the login and register pieces with the RightSide being called afterward to cover the switch 
+on click.    
+
+
 # gameHelpers.js
+
+The Stage Width and Height is declared and exported as 12 and 20 respectivly 
+these are meant to be the fixed space of the board
+
+createStage constant os created and exported and creates the board with the 
+Height and Width just set.
+
+checkCollision function is declared and takes the player and stage as well as the x and y movement
+positions are taken and mathmatical statements in the code is used to check and compare for colision 
+and also to make sure the games block do not go out of bounds
+
+
 
 # tetrominos.js
 
+declares TETROMINOS to be exported and declares the shapes and colors based on text and blocks 0 and the 
+letter in question for the block pieces.
+
+randomTetromino is also declared but as a function to be exported and has tetrominos declared as a constant which
+will be used and passed as string.
+
+another constant randTetromino using the string previosly declared to randomly draw one of the letters
+all this is returned to where its called such as the app.
+
 # index.js
+
+ordinarilly one would not need to do anything once its created at base but the 
+the app rendering needs to be as follows as because if left alone the application would take the input
+as double the input
+ReactDOM.render(
+    <App />,
+  document.getElementById('root')
+);
 
 
 # Getting Started with Create React App
