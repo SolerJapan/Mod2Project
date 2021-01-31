@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-
+//this part will post the link to the video that teaches how to create this.
 const AboutPage = () => {
     return (
         <>

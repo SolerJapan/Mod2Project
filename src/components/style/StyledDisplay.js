@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-//the styling for the display for the score, rows, and level boxes
+//the styling for the display for the score, rows, and level boxes, and the game over
 export const StyledDisplay = styled.div`
   box-sizing: border-box;
   display: flex;

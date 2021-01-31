@@ -10,6 +10,10 @@ export const TETROMINOS = {
       shape: [[0, 'L', 0], [0, 'L', 0], [0, 'L', 'L']],
       color: '223, 173, 36',
     },
+    //C: {
+     // shape: [[0, 'C', 'C'], [0, 'C', 0], [0, 'C', 'C']],
+    //  color: '123, 73, 36',
+  //  },
     O: { shape: [['O', 'O'], ['O', 'O']], color: '223, 217, 36' }, // square block  
     S: { shape: [[0, 'S', 'S'], ['S', 'S', 0], [0, 0, 0]], color: '48, 211, 56' }, // S block  
     T: {

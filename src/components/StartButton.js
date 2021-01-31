@@ -14,7 +14,7 @@ const StyledStartButton = styled.button`
   background: #336;
   position: absolute;
   top: 300px;
-  left: 830px;
+  left: 950px;
   font-family: Pixel, Arial, Helvetica, sans-serif;
   font-size: 1rem;
   outline: none;

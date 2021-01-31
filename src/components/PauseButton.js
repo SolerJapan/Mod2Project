@@ -14,7 +14,7 @@ const StyledPauseButton = styled.button`
   background: #633;
   position: absolute;
   top: 200px;
-  left: 830px;
+  left: 950px;
   font-family: Pixel, Arial, Helvetica, sans-serif;
   font-size: 1rem;
   outline: none;

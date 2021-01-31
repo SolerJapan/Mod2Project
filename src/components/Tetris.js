@@ -120,6 +120,11 @@ const Tetris = () => {
         dropPlayer();
       } else if (keyCode === 38) {//up key arrow
         playerRotate(stage, 1);
+      }//cheats
+        else if (keyCode === 115) {//f4 key arrow
+          setLevel(level + 1 );
+      } else if (keyCode === 113) {//f2 key arrow
+        setScore(score + 1000);
       }
     }
   };
@@ -135,7 +140,7 @@ const Tetris = () => {
         <Stage stage={stage} />
         <aside>
           {gameOver ? (
-            <Display gameOver={gameOver} text="Game Over" />
+            <Display gameOver={gameOver} text="Bodied" />
           ) : (
             <div>
               <Display text={`Score: ${score}`} /> {/*displays the score by score value */}

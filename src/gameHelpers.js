@@ -1,4 +1,6 @@
+//tiles left to right
 export const STAGE_WIDTH = 12;
+// tiles low to high
 export const STAGE_HEIGHT = 20;
 
 export const createStage = () =>
@@ -7,23 +9,6 @@ export const createStage = () =>
   // the function below is for collison detection and sets the boun
 export const checkCollision = (player, stage, { x: moveX, y: moveY }) => {
  
- 
-  // this is other code for the game and the performance does suffer a bit
-  // THIS IS SLOWER!!!
-  // return player.tetromino.some((row, y) =>
-  //   row.some((cell, x) => {
-  //     if (cell !== 0) {
-  //       return (
-  //         !stage[y + player.pos.y + moveY] ||
-  //         !stage[y + player.pos.y + moveY][x + player.pos.x + moveX] ||
-  //         stage[y + player.pos.y + moveY][x + player.pos.x + moveX][1] !==
-  //           'clear'
-  //       );
-  //     }
-  //     return false;
-  //   })
-  // );
-
   // Using for loops to be able to return (and break). Not possible with forEach
   for (let y = 0; y < player.tetromino.length; y += 1) {
     for (let x = 0; x < player.tetromino[y].length; x += 1) {
