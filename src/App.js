@@ -21,51 +21,125 @@ class App extends React.Component {
     this.state = {
       isLogginActive: true,
       isLoggedIn : false,
-      isLoginScreen : true
+      isLoginScreen : true,
+      username:'',
+      password: '',
+      HighScore: 0,
+      email: '',
+      
+      users: [
+
+        {username:'silversamurai',
+        password: 'giniro',
+        HighScore: 1200,
+        email: 'silversamurai@gmail.com'},
+
+        {username:'fruitspunchsamurai',
+        password: 'fruits',
+        HighScore: 1500,
+        email: 'katsura@gmail.com'}
+      ]
     };
     this.submitForm = this.submitForm.bind(this);
     
+    
   }
   
-  submitForm(values) {
-    values.preventDefault()
-    this.setState({ values })
+  submitForm = ( username, password , email ) => {
+    
+    this.setState({ username, password, email })
+
+    console.log("app submit")
+   
+    console.log(this.state.users)
+
+    if(email == null){
+      if(this.state.users[0].username == username && this.state.users[0].password == password) 
+         
+        {
+          let HighScore = this.state.users[0].HighScore
+          let em = this.state.users[0].email
+          //this.setState({})
+          
+          
+          console.log("login success")
+
+          this.setState({username,password, HighScore, email:em})
+          
+          console.log(this.state)
+
+
+          this.setState(prevState => ({ isLogginActive: !prevState.isLogginActive }));
+          this.setState(prevState => ({ isLoggedIn: !prevState.isLoggedIn }));
+          this.setState(prevState => ({ isLoginScreen: !prevState.isLoginScreen }));
+        }
+        else if(this.state.users[1].username == username && this.state.users[1].password == password )
+        {
+          let HighScore = this.state.users[1].HighScore
+          let em = this.state.users[1].email
+          //this.setState({})
+          
+          
+          console.log("login success")
+
+          this.setState({username,password, HighScore, email:em})
+          
+          console.log(this.state)
+          this.setState(prevState => ({ isLogginActive: !prevState.isLogginActive }));
+          this.setState(prevState => ({ isLoggedIn: !prevState.isLoggedIn }));
+          this.setState(prevState => ({ isLoginScreen: !prevState.isLoginScreen }));
+        }
+      else
+      {
+        console.log(this.state.users[0].username)
+        console.log(this.state.users[1].username)
+        console.log("not found")
+      }
+      
+    }else 
+    {
+     
+      let HighScore = 0;
+      let newUser  = {username, password, email , HighScore};
+
+       this.setState({ users:[...this.state.users, newUser] })
+       
+       
+
+       this.setState(prevState => ({ isLoggedIn: !prevState.isLoggedIn }));
+       this.setState(prevState => ({ isLoginScreen: !prevState.isLoginScreen }));
+
+       setTimeout(() => console.log(this.state), 1000) 
+    }
+
   }
   
 
 
+  changeLoggedin(){
+      this.setState(prevState => ({ isLogginActive: !prevState.isLogginActive }));
+      this.setState(prevState => ({ isLoggedIn: !prevState.isLoggedIn }));
+      this.setState(prevState => ({ isLoginScreen: !prevState.isLoginScreen }));
+  }
 
-
+  changeLoggedOut = () => {
+    this.setState(prevState => ({ isLogginActive: !prevState.isLogginActive }));
+    this.setState(prevState => ({ isLoggedIn: !prevState.isLoggedIn }));
+    this.setState(prevState => ({ isLoginScreen: !prevState.isLoginScreen }));
+}
   
-  // componentDidMount() {
-  //   //Add .right by default
-  //   this.rightSide.classList.add("right");
-  // }
-  // changes state between login and register
+
    changeState() {
-  //   const { isLogginActive } = this.state;
 
-  //   if (isLogginActive) {
-  //     this.rightSide.classList.remove("right");
-  //     this.rightSide.classList.add("left");
-  //   } else {
-  //     this.rightSide.classList.remove("left");
-  //     this.rightSide.classList.add("right");
-  //   }
      this.setState(prevState => ({ isLogginActive: !prevState.isLogginActive }));
    
    }
 
   render(){
-    const { isLogginActive } = this.state;
+    const { isLogginActive,isLoggedIn,isLoginScreen,username,email,password, HighScore,values } = this.state;
     const current = isLogginActive ? "Register" : "Login";
     const currentActive = isLogginActive ? "login" : "register";
-    const { isLoggedIn } = this.state;
-    const { isLoginScreen } = this.state;
-
-    const { values } = this.state;
-
-    const user = { username: 'silversamurai', password: 'ginko' , HighScore: 2500}
+  
    
 
      return(
@@ -93,23 +167,21 @@ class App extends React.Component {
         <div className="login">
 
 
-          <div className="container" ref={ref => (this.container = ref)}>
+          <div className="container" >
            
-          {isLoggedIn == true && isLogginActive == false && isLoginScreen == false && (   <UserStat containerRef={ref => (this.current = ref)} />  )}
+          {isLoggedIn == true && isLogginActive == false && isLoginScreen == false && (   
+          
+          <UserStat changeLoggedOut={this.changeLoggedOut} user={{username, password, email, HighScore}} 
+          
+          containerRef={ref => (this.current = ref)} />  )}
 
             {isLogginActive && isLoginScreen == true && (   <Login  onFormSubmit={this.submitForm} containerRef={ref => (this.current = ref)} />  )}
            
-            {!isLogginActive && isLoginScreen == true && (  <Register  onFormSubmit={this.submitForm}  containerRef={ref => (this.current = ref)} />  )}
+            {!isLogginActive && isLoginScreen == true && (  <Register  onFormSubmit={this.submitForm} containerRef={ref => (this.current = ref)}  />  )}
           </div>
-          <RightSide current={current} currentActive={currentActive} 
-          containerRef={ ref => (this.rightSide = ref)}
-          onClick={this.changeState.bind(this)} />
-        </div>
-        <div>
-          Submitted form values : <br/>
-          username: {values && values.username} <br/>
-          email: {values && values.email}
-          password: {values && values.password}
+          {isLoggedIn == false && <RightSide current={current} currentActive={currentActive} 
+          
+          onClick={this.changeState.bind(this)} /> }
         </div>
     </div>
   );

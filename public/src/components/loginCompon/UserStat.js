@@ -8,28 +8,15 @@ export class UserStat extends Component {
         super(props);
     }
      
-    submitForm = (event) => {
-       
-         
-
-         console.log(this.props);
-         this.props.changeLoggedOut();
-      }
-
     render(){
-
-        console.log(this.props);
-
-     
         return (
         
             <div className="base-container">        
               <div className="header">UserStats</div>
-                
-                   <p>Username :</p>{this.props.user.username}
-                   <p>HighScore :</p>{this.props.user.HighScore}   
-                   <p></p>
-                   <button onClick={this.submitForm}  className="submitbtn" >LogOut</button>
+               
+                   <p>Username :</p><p>silversamurai</p>
+                   <p>HighScore :</p><p>1200</p>
+                   
                  
                 </div>
                 
