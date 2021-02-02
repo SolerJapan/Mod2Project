@@ -21,6 +21,8 @@ still playable.
 this imports the style that was used and applies it to the login and register on the same page
 this also exports login and register components to be used later in the main app.
 
+
+
 ### `Login`
 
 this is the Login component declared and created. This creates and renders the login part with 
@@ -54,17 +56,35 @@ memorizes the result. Before the next render, if the new props are the same,
 React reuses the memoized result skipping the next rendering.
 This is then exported to Stage.js
 
+### `Functions`
+
+const Cell = ({ type }) => ();
+
+takes the cell based on the cell type and tetromin color to style
+
 ### `Display`
 
 This calls the StyledDisplay component and uses the styling to and sets the condition to switch the 
 text and display over to the game over text. (this is a function)
 This is then exported to Tetris.js
 
+### `Functions`
+
+const Display = ({ gameOver, text }) => ()
+
+calls the styledDisplay css to output  with the stage taken as input to style
+
 ### `Stage`
 
 Calls the the StyledStage component and uses the styling to fix the stage width and height
 inside the Stage constant(function) this also uses the exported cells to use in a map to set 
 the grid in the stage. which is then exported to Tetris.js
+
+### `Functions`
+
+const Stage = ({ stage }) => ()
+
+calls the styledStage css to output  with the stage taken as input to style
 
 ### `Tetris`
 
@@ -114,25 +134,94 @@ also there is a check as long as there isnt a game over the display will show th
 if the gameover condition is fulfilled it would turn into gameover display being rendered
 then the pause and start buttons are rendered. with everything closing Tetris is exported to App.js 
  
+ ### `Functions`
+ 
+ const move = ({ keyCode }) => {}
+ 
+ takes the keyboard input to return in this case movement there are 2 keys added for score and 
+ level for testing purposes. movePlayer is called for directional inputs movePlayer
+ 
+ const drop = () => {}
+ 
+ the main game function which runs checks for the speed,colision and gameover.
+ 
+ const dropPlayer = () => {} 
+ 
+ this is run when the down button is pressed and first stops the drop until the button is released
+ then drop is called again to resume timer
+ 
+ const movePlayer = dir => {}
+ 
+ this is called to move the player piece left or right
+ 
+ const startGame = () => {}
+ 
+ calls all the states to set the stage, the drop speed the player, the 
+ set score,level, and rows to 0 and set the gameOver to false 
+ as such this can be also considered a reset
+
+ const pauseGame = () => {}
+ 
+ sets the dropTime to null when pressed when drop is active. else will make the piece
+ move again with speed based on the current level.
+ 
+ useInterval (callback)
+ 
+ as a exported callback this sets up the games delay and interval ticks 
+ with another function that is useEffect which is a react function
+ 
+ 
+ 
 # Styled Components 
 
 ## `in style folder`
 
 ### `StyledCell`
 
+contains the CSS to be exported named const Styledcell
+this has the colors and border with the width set to auto and the 
+colors set for the border and background
+
 ### `StyledDisplay`
+
+contains the CSS to be exported named const StyledDisplay
+this has the settings for the mini bars that is set for each of the 
+display for the score, rows, and level. This includes the the height, width,
+position, colors, as well as the additional coloring for the gameover setting
 
 ### `StyledGameOver`
 
+Supposedly is meant to be the separate Css for the game over display for the 
+tetris app but this has no use in the program and as such is just left alone as 
+in the program as reference and has no functional use.
+
 ### `StyledStage`
+
+contains the CSS to be exported named const StyledStage
+this has the settings to create the stage with the reapeating cells among height and
+width in the stage component along with the position and color.
 
 ### `StyledTetris`
 
+contains the CSS to be exported named const StyledTetrisWrapper and StyledTetris.
+The settings to style the background and scores boards positioning respectively 
+a background image is declared here as well.
+
 ## `in components folder`
 
-### `PauseButton`
+### `PauseButton
+`
+contains the CSS to be used called const StyledPause button
+
+further below const PauseButton is called as a function and takes the callback as the
+input which is exported and called into the tetris component.
 
 ### `StartButton`
+
+contains the CSS to be used called const StyledStart button
+
+further below const StyledStart is called as a function and takes the callback as the
+input which is exported and called into the tetris component.
 
 ## hooks
  
@@ -146,6 +235,13 @@ then the pause and start buttons are rendered. with everything closing Tetris is
   
   calcScore is declared as a function the function at base is made to calculate and
   set the score and the rows based on rows cleared and then returns the results
+
+### `Functions`
+
+const calcScore = useCallback(() => {}
+
+a callback is used and this ultimately sets the score and rows based on what was cleared in 
+game such as score based on how many rows cleared 
 
 ### `useInterval` 
 
@@ -174,6 +270,28 @@ tetromino block
 
 every function is then returned from this function/hook.
 
+### `Functions`
+
+ rotate(matrix, dir) {}
+
+ responsible for the rotation.
+
+ playerRotate(stage, dir) {}
+ this function sets a cloned player constant and uses json parse to save a clone of the piece to use 
+ to update the stage which is how the tetris pieces remain whichever position and rotation its set at.
+ 
+ updatePlayerPos = ({ x, y, collided }) => {}
+
+ everytime this is called the player position is saved and updated also updates 
+ the colision if its colided with something
+ 
+ 
+ 
+ resetPlayer = useCallback(() => {}
+
+ resets player position by seting the player position and chosing a random tetris piece as well 
+ as reseting the colision boolean
+
 ### `useStage` 
 
 imports the createStage from gameHelpers file to use to create the stage with
@@ -193,6 +311,15 @@ is reset.
 set stage is continuously called to keep updating then finally the
 stage, setStage and the rowsCleared is returned.   
 
+ ### `Functions`
+
+ updateStage = prevStage => {}
+
+ this saves the update to the current changes in the stage like what pieces are where 
+ 
+ if there is a colision it reset the player piece and also sweeps the row if its filled
+ along with updating the stage
+ 
 # pages
 
 ## AboutPage
