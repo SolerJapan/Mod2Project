@@ -7,12 +7,12 @@ Mod 2 final project (Tetris with login)
 # Purpose of the Project
 
 The idea of the project is to create a game that allow one to pass the time playing Tetris in React and Redux 
-and also allow for high score based on the user logged in. At base even without login tetris is 
+and also allow for high score based on the user logged in. At base even without login tetris is
 still playable.  
 
 # Documentation Details
 
-# Components / functional Components 
+# Components / functional Components
 
 ## `in loginCompon folder`
 
@@ -25,13 +25,13 @@ this also exports login and register components to be used later in the main app
 
 ### `Login`
 
-this is the Login component declared and created. This creates and renders the login part with 
+this is the Login component declared and created. This creates and renders the login part with
 the base container, header, form. In the form there is the labels for username and password respectively
 followed by the submit button this has been styled by style.css which is shared in the same folder.
 
 ### `Register`
 
-this is the Register component declared and created. This creates and renders the login part with 
+this is the Register component declared and created. This creates and renders the login part with
 the base container, header, form. In the form there is the labels for username, email and password respectively
 followed by the submit button this has been styled by style.css which is shared in the same folder.
 
@@ -39,7 +39,7 @@ followed by the submit button this has been styled by style.css which is shared 
 
 This Right side props is meant to serve as a switch this is returned as a prop which
 in the final app creates a blue square that is hidden behind the main login box but sticks
-out on the right side and serves as a switch in the main app to switch back and forth between login 
+out on the right side and serves as a switch in the main app to switch back and forth between login
 and register
 
 ## `in Components folder`
@@ -51,7 +51,7 @@ the const Cell uses the styling from the StyleCell component and renders the col
 based on the shape and React.memo is used so as effeively render.   
 
 visually using export default Cell causes no issue and there is no noticable change
-but When a component is wrapped in React.memo(), React renders the component and 
+but When a component is wrapped in React.memo(), React renders the component and
 memorizes the result. Before the next render, if the new props are the same,
 React reuses the memoized result skipping the next rendering.
 This is then exported to Stage.js
@@ -64,7 +64,7 @@ takes the cell based on the cell type and tetromin color to style
 
 ### `Display`
 
-This calls the StyledDisplay component and uses the styling to and sets the condition to switch the 
+This calls the StyledDisplay component and uses the styling to and sets the condition to switch the
 text and display over to the game over text. (this is a function)
 This is then exported to Tetris.js
 
@@ -77,7 +77,7 @@ calls the styledDisplay css to output  with the stage taken as input to style
 ### `Stage`
 
 Calls the the StyledStage component and uses the styling to fix the stage width and height
-inside the Stage constant(function) this also uses the exported cells to use in a map to set 
+inside the Stage constant(function) this also uses the exported cells to use in a map to set
 the grid in the stage. which is then exported to Tetris.js
 
 ### `Functions`
@@ -88,12 +88,12 @@ calls the styledStage css to output  with the stage taken as input to style
 
 ### `Tetris`
 
-This is the main area where the main tetris game is run. the calls that are made are 
-the stage or field scope and the colison detection from gamehelpers.js, The styled components 
+This is the main area where the main tetris game is run. the calls that are made are
+the stage or field scope and the colison detection from gamehelpers.js, The styled components
 which handle the background and the score, level, and row boards.
 The application call the hooks for useInterval, usePlayer, useStage, and useGameStatus`
 which sets the rules for the game.
-The components that are called for the game is the stage which sets the grid blocks, the 
+The components that are called for the game is the stage which sets the grid blocks, the
 Display which sets the location for the boards. The Start and Pause buttons are called which
 are the callback functions and the styling of the respective buttons.
 
@@ -105,94 +105,94 @@ const [stage, setStage, rowsCleared] = useStage(player, resetPlayer);
 const [score, setScore, rows, setRows, level, setLevel] = useGameStatus( rowsCleared);
 these declarations are made to set the droptime, gameover, player stats, the stage, and score information
 
-the movePlayer variable is declared and its purpose is to allow the player to move left or right and checks 
+the movePlayer variable is declared and its purpose is to allow the player to move left or right and checks
 if there is collision.
 
-the keyUp function is not the up arrow but is meant to represent the game continuing its flow 
-when the arrow key for movement is released 
+the keyUp function is not the up arrow but is meant to represent the game continuing its flow
+when the arrow key for movement is released
 
 the startGame function serves as the way to start the game and reset it as its function
 sets the stat such as droptime the score level rows and gameover boolean is set to false
 
-pauseGame function stops the flow of the game and continues it if presses again also hitting down will 
+pauseGame function stops the flow of the game and continues it if presses again also hitting down will
 also continue the flow.
 
 we have a drop function which handles the speed at which the block fall which is set based on level  
-at the same time the collision detection also checks to make sure the block up top isn't blocked and if it 
+at the same time the collision detection also checks to make sure the block up top isn't blocked and if it
 is blocked then the game will declare a gameover and change the gameover boolean to true
 
 the dropPlayer is just accelerating block when down is pressed but when that is happening the droptime is set to
 null while the down button is pressed when released drop is called to resume the game  
 
-move function make a call to move the player(block) based on which key code is pressed 
-for example 37 is the left arrow 39 is the right 40 is the down key and 38 is the up arrow 
+move function make a call to move the player(block) based on which key code is pressed
+for example 37 is the left arrow 39 is the right 40 is the down key and 38 is the up arrow
 the up arrow calls a function to make the block rotate called playerRotate.
 
 finally the styles and divs are called to set the field and board and return them these would be
 StyledTetris wrapper from the styledTetrisWrapper and StyledTetris styling component
-also there is a check as long as there isnt a game over the display will show the score row and level while 
+also there is a check as long as there isnt a game over the display will show the score row and level while
 if the gameover condition is fulfilled it would turn into gameover display being rendered
-then the pause and start buttons are rendered. with everything closing Tetris is exported to App.js 
- 
+then the pause and start buttons are rendered. with everything closing Tetris is exported to App.js
+
  ### `Functions`
- 
+
  const move = ({ keyCode }) => {}
- 
- takes the keyboard input to return in this case movement there are 2 keys added for score and 
+
+ takes the keyboard input to return in this case movement there are 2 keys added for score and
  level for testing purposes. movePlayer is called for directional inputs movePlayer
- 
+
  const drop = () => {}
- 
+
  the main game function which runs checks for the speed,colision and gameover.
- 
- const dropPlayer = () => {} 
- 
+
+ const dropPlayer = () => {}
+
  this is run when the down button is pressed and first stops the drop until the button is released
  then drop is called again to resume timer
- 
+
  const movePlayer = dir => {}
- 
+
  this is called to move the player piece left or right
- 
+
  const startGame = () => {}
- 
- calls all the states to set the stage, the drop speed the player, the 
- set score,level, and rows to 0 and set the gameOver to false 
+
+ calls all the states to set the stage, the drop speed the player, the
+ set score,level, and rows to 0 and set the gameOver to false
  as such this can be also considered a reset
 
  const pauseGame = () => {}
- 
+
  sets the dropTime to null when pressed when drop is active. else will make the piece
  move again with speed based on the current level.
- 
+
  useInterval (callback)
- 
- as a exported callback this sets up the games delay and interval ticks 
+
+ as a exported callback this sets up the games delay and interval ticks
  with another function that is useEffect which is a react function
- 
- 
- 
-# Styled Components 
+
+
+
+# Styled Components
 
 ## `in style folder`
 
 ### `StyledCell`
 
 contains the CSS to be exported named const Styledcell
-this has the colors and border with the width set to auto and the 
+this has the colors and border with the width set to auto and the
 colors set for the border and background
 
 ### `StyledDisplay`
 
 contains the CSS to be exported named const StyledDisplay
-this has the settings for the mini bars that is set for each of the 
+this has the settings for the mini bars that is set for each of the
 display for the score, rows, and level. This includes the the height, width,
 position, colors, as well as the additional coloring for the gameover setting
 
 ### `StyledGameOver`
 
-Supposedly is meant to be the separate Css for the game over display for the 
-tetris app but this has no use in the program and as such is just left alone as 
+Supposedly is meant to be the separate Css for the game over display for the
+tetris app but this has no use in the program and as such is just left alone as
 in the program as reference and has no functional use.
 
 ### `StyledStage`
@@ -204,7 +204,7 @@ width in the stage component along with the position and color.
 ### `StyledTetris`
 
 contains the CSS to be exported named const StyledTetrisWrapper and StyledTetris.
-The settings to style the background and scores boards positioning respectively 
+The settings to style the background and scores boards positioning respectively
 a background image is declared here as well.
 
 ## `in components folder`
@@ -224,15 +224,15 @@ further below const StyledStart is called as a function and takes the callback a
 input which is exported and called into the tetris component.
 
 ## hooks
- 
-### `useGameStatus` 
 
- the following constants are declared 
+### `useGameStatus`
+
+ the following constants are declared
  const [score, setScore] = useState(0);
   const [rows, setRows] = useState(0);
   const [level, setLevel] = useState(0);
   const linePoints = [40, 100, 300, 1200];
-  
+
   calcScore is declared as a function the function at base is made to calculate and
   set the score and the rows based on rows cleared and then returns the results
 
@@ -240,33 +240,33 @@ input which is exported and called into the tetris component.
 
 const calcScore = useCallback(() => {}
 
-a callback is used and this ultimately sets the score and rows based on what was cleared in 
-game such as score based on how many rows cleared 
+a callback is used and this ultimately sets the score and rows based on what was cleared in
+game such as score based on how many rows cleared
 
-### `useInterval` 
+### `useInterval`
 
-the function useInterval is created and called and its purpose is to create ticks and time and 
-delay in the game and is exported 
+the function useInterval is created and called and its purpose is to create ticks and time and
+delay in the game and is exported
 
-### `usePlayer` 
+### `usePlayer`
 
 imports the TETROMINOS and randomTeromino function from the tetrominos file
 as well as the stage_width and checkCollision from gameHelpers file
 
-creates a function usePlayer to be exported as a function 
+creates a function usePlayer to be exported as a function
 it starts off with declaring the player as the TETROMINOS is called to set the player via useState
 while coloided is set to ralse
 
-the function rotate is declared with matrix and the value for direction 
+the function rotate is declared with matrix and the value for direction
 
 the function playerRotate is declared and this function the reason the blocks persist once a piece colides
-with with a block or a border the json records it to the instance and the block position is cloned and left there 
+with with a block or a border the json records it to the instance and the block position is cloned and left there
 until the row is completed
 
 the function updatePlayerPos is what updates player pos as time ticks
 
-resetPlayer uses a callback to set the start position for the next piece and calls another 
-tetromino block 
+resetPlayer uses a callback to set the start position for the next piece and calls another
+tetromino block
 
 every function is then returned from this function/hook.
 
@@ -277,33 +277,33 @@ every function is then returned from this function/hook.
  responsible for the rotation.
 
  playerRotate(stage, dir) {}
- this function sets a cloned player constant and uses json parse to save a clone of the piece to use 
+ this function sets a cloned player constant and uses json parse to save a clone of the piece to use
  to update the stage which is how the tetris pieces remain whichever position and rotation its set at.
- 
+
  updatePlayerPos = ({ x, y, collided }) => {}
 
- everytime this is called the player position is saved and updated also updates 
+ everytime this is called the player position is saved and updated also updates
  the colision if its colided with something
- 
- 
- 
+
+
+
  resetPlayer = useCallback(() => {}
 
- resets player position by seting the player position and chosing a random tetris piece as well 
+ resets player position by seting the player position and chosing a random tetris piece as well
  as reseting the colision boolean
 
-### `useStage` 
+### `useStage`
 
 imports the createStage from gameHelpers file to use to create the stage with
   const [stage, setStage] = useState(createStage());
   const [rowsCleared, setRowsCleared] = useState(0);
-  
+
 inside of the useStage function that is to be exported
-inside of the useEffect which meant to update the visuals and stage after everything has 
+inside of the useEffect which meant to update the visuals and stage after everything has
 been rendered.  
 
-function updateStage declared which is used to flush the stage and 
-clear the rows with newStage declared then new block is pulled and moved into 
+function updateStage declared which is used to flush the stage and
+clear the rows with newStage declared then new block is pulled and moved into
 the stage and descents in the newStage.
 when the piece colides with the border or piece newStage is called and the player position
 is reset.
@@ -315,11 +315,11 @@ stage, setStage and the rowsCleared is returned.
 
  updateStage = prevStage => {}
 
- this saves the update to the current changes in the stage like what pieces are where 
- 
+ this saves the update to the current changes in the stage like what pieces are where
+
  if there is a colision it reset the player piece and also sweeps the row if its filled
  along with updating the stage
- 
+
 # pages
 
 ## AboutPage
@@ -344,11 +344,11 @@ the browserRouter, Switch, Route, and Link are imported from react-router-dom
 the AboutPage and Instructions are both imported from the pages folder
 
 the app component is declared with propss and an internal state such as isLogginActive:true
-which is the switch for login and register 
+which is the switch for login and register
 
 changeState() is the part that handles switch the states back and forth between login and register
 
-inside the rendering 
+inside the rendering
     const { isLogginActive } = this.state;
     const current = isLogginActive ? "Register" : "Login";
     const currentActive = isLogginActive ? "login" : "register";
@@ -358,39 +358,39 @@ below the main program is rendered with the main class being App
 followed by the nav class with the css has been moved to the right side of the page to
 properly cover the changing information with BrowserRouter, Link, Switch and Route inside
 
-Afterward the main tetris component is called to cover the main field on the left and center 
+Afterward the main tetris component is called to cover the main field on the left and center
 side of the screen.
 
 on the bottom right is the login class with the class container that holds both
-the login and register pieces with the RightSide being called afterward to cover the switch 
+the login and register pieces with the RightSide being called afterward to cover the switch
 on click.    
 
 
 # gameHelpers.js
 
-The Stage Width and Height is declared and exported as 12 and 20 respectivly 
+The Stage Width and Height is declared and exported as 12 and 20 respectivly
 these are meant to be the fixed space of the board
 
-createStage constant os created and exported and creates the board with the 
+createStage constant os created and exported and creates the board with the
 Height and Width just set.
 
 checkCollision function is declared and takes the player and stage as well as the x and y movement
-positions are taken and mathmatical statements in the code is used to check and compare for colision 
+positions are taken and mathmatical statements in the code is used to check and compare for colision
 and also to make sure the games block do not go out of bounds
 
  ### `Functions`
 
 const createStage = () =>
 
-based on the height and width set in the file creates an array set that creates the stage 
+based on the height and width set in the file creates an array set that creates the stage
 
 const checkCollision = (player, stage, { x: moveX, y: moveY }) => {}
 
-this function runs various checks such as 
+this function runs various checks such as
 
 # tetrominos.js
 
-declares TETROMINOS to be exported and declares the shapes and colors based on text and blocks 0 and the 
+declares TETROMINOS to be exported and declares the shapes and colors based on text and blocks 0 and the
 letter in question for the block pieces.
 
 randomTetromino is also declared but as a function to be exported and has tetrominos declared as a constant which
@@ -400,15 +400,15 @@ another constant randTetromino using the string previosly declared to randomly d
 all this is returned to where its called such as the app.
 
  ### `Functions`
- 
+
  const randomTetromino = () => {}
- 
- inside the file here a table is declared from what will be called randomly among the tetris pieces 
- available and it then returned 
+
+ inside the file here a table is declared from what will be called randomly among the tetris pieces
+ available and it then returned
 
 # index.js
 
-ordinarilly one would not need to do anything once its created at base but the 
+ordinarilly one would not need to do anything once its created at base but the
 the app rendering needs to be as follows as because if left alone the application would take the input
 as double the input
 ReactDOM.render(
