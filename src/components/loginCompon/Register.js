@@ -47,22 +47,18 @@ export class Register extends React.Component {
 
     render() {
 
-
-      //var RegObject = JSON.parse(myjsonstring);
-     {/*value={this.state.user} onChange={Change}*/}
-     {/* value={this.state.email} onChange={Change}*/} 
-     {/*value={this.state.pass} onChange={Change}*/}
       return (
         <div className="base-container" ref={this.props.containerRef}>
           
           <div className="header">Register</div>
             <form className="form" onSubmit={this.submitForm} >
                 <label htmlFor="username">Username: </label>
-                <input type="text" id="username" name="username" onChange={this.onChange} 
+                <input type="text" id="username"  name="username" onChange={this.onChange} 
                  value={this.state.username} placeholder="username" />  
-
+   
                 <label htmlFor="email">Email: </label>
-                <input type="text" id="email" name="email" onChange={this.onChange} 
+                <input type="email" id="email" name="email"  
+                required onChange={this.onChange} 
                 value={this.state.email} placeholder="email" />    
                 
                 <label htmlFor="password">Password: </label>

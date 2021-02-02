@@ -43,9 +43,6 @@ export class Login extends Component {
     
     render(){
 
-       
-    
-
         return (
         
             <div className="base-container">        

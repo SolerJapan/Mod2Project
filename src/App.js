@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "./App.css";
 import { Login, Register, UserStat } from "./components/loginCompon/Index";
 import RightSide from "./components/loginCompon/RightSide";
 import Tetris from './components/Tetris';
-import { UserContext } from './hooks/userContext';
+
 
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import AboutPage from "./Pages/AboutPage";
@@ -150,7 +150,7 @@ class App extends React.Component {
          {/*for the board to the right */}
         <div className="nav">
           <h3>Welcome to Redux Tetris</h3>
-          <UserContext.Provider value = ''>
+          
           <BrowserRouter>            
             <Link className="about" to = "AboutPage">About</Link> <Link to = "Instructions">Instructions</Link>           
               <Switch>          
@@ -158,7 +158,7 @@ class App extends React.Component {
                 <Route path='/Instructions' render={(props) => <Instructions {...props} />} /> 
               </Switch>
             </BrowserRouter>
-          </UserContext.Provider>
+   
         </div>
         {/*call the tetris game on the left */}
         <Tetris></Tetris>

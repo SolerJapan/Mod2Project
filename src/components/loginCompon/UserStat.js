@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 
-//the intent here is that once the login condition has been fulfilled the 
-//user infomation with high score will be posted here 
+//the operation here is that once the login condition has been fulfilled the 
+//user infomation with high score will be posted here or new username will be posted but score is 0
 export class UserStat extends Component {
 
     constructor(props){
         super(props);
     }
-     
+     // this handles the logout
     submitForm = (event) => {
-       
-         
 
          console.log(this.props);
          this.props.changeLoggedOut();
@@ -30,7 +28,7 @@ export class UserStat extends Component {
                    <p>HighScore :</p>{this.props.user.HighScore}   
                    <p></p>
                    <button onClick={this.submitForm}  className="submitbtn" >LogOut</button>
-                 
+                    
                 </div>
                 
         
