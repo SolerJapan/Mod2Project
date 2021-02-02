@@ -27,7 +27,7 @@ export class Register extends React.Component {
       const email = document.querySelector("#email");
       const password = document.querySelector("#password");
   
-
+      // submits the username ,email and password to the main state
       this.props.onFormSubmit(this.state.username, this.state.password, this.state.email);
 
        console.log('submit');

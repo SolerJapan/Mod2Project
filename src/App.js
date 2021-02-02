@@ -26,9 +26,9 @@ class App extends React.Component {
       password: '',
       HighScore: 0,
       email: '',
-      
+      // user objects and users saved to state
       users: [
-
+        
         {username:'silversamurai',
         password: 'giniro',
         HighScore: 1200,
@@ -44,7 +44,7 @@ class App extends React.Component {
     
     
   }
-  
+  // when submit is pressed it takes what was input from the register or login component and is saved to state
   submitForm = ( username, password , email ) => {
     
     this.setState({ username, password, email })
@@ -52,8 +52,9 @@ class App extends React.Component {
     console.log("app submit")
    
     console.log(this.state.users)
-
-    if(email == null){
+    // if there is no email its treated as login and checks user state else registers user into state and is pushed.
+    if(email == null)
+    {
       if(this.state.users[0].username == username && this.state.users[0].password == password) 
          
         {
@@ -115,20 +116,20 @@ class App extends React.Component {
   }
   
 
-
+  // function not used but is made to simulate login and change the state which control which is shown 
   changeLoggedin(){
       this.setState(prevState => ({ isLogginActive: !prevState.isLogginActive }));
       this.setState(prevState => ({ isLoggedIn: !prevState.isLoggedIn }));
       this.setState(prevState => ({ isLoginScreen: !prevState.isLoginScreen }));
   }
-
+// function is used to simulate logout and change the state which control which is shown 
   changeLoggedOut = () => {
     this.setState(prevState => ({ isLogginActive: !prevState.isLogginActive }));
     this.setState(prevState => ({ isLoggedIn: !prevState.isLoggedIn }));
     this.setState(prevState => ({ isLoginScreen: !prevState.isLoginScreen }));
 }
   
-
+   // this function is called when the rightside blue piece is clicked
    changeState() {
 
      this.setState(prevState => ({ isLogginActive: !prevState.isLogginActive }));

@@ -23,7 +23,7 @@ export class Login extends Component {
       const username = document.querySelector("#username");
       const password = document.querySelector("#password");
   
- 
+        // submits the username and password to the main state
         this.props.onFormSubmit(this.state.username, this.state.password);
 
 
