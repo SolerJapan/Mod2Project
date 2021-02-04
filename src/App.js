@@ -95,6 +95,7 @@ class App extends React.Component {
         console.log(this.state.users[0].username)
         console.log(this.state.users[1].username)
         console.log("not found")
+        alert("user not found");
       }
       
     }else 

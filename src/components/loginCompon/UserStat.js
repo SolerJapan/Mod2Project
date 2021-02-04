@@ -8,6 +8,7 @@ export class UserStat extends Component {
         super(props);
     }
      // this handles the logout
+     
     submitForm = (event) => {
 
          console.log(this.props);

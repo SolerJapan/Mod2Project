@@ -18,22 +18,44 @@ still playable.
 
 ### `index`
 
-this imports the style that was used and applies it to the login and register on the same page
-this also exports login and register components to be used later in the main app.
+this imports the components that was created in the UserStat,login and register on the same folder
+this also exports said components to be used later in the main app.
 
+### `UserStat`
 
+this is the UserStats component declared and created.Shares the submit button and container styled by the CSS.
+Once the conditions for the login or register has been completed this box is called and displays the User's 
+in game stat such as name and score. if registered the highscore would be 0 if logged in then the score
+would be what was saved in the state
+
+### `Functions`
+
+submitForm = ()
+
+the only purpose here is simply to submit the logout and calls the logout function in the main app.
 
 ### `Login`
 
 this is the Login component declared and created. This creates and renders the login part with
 the base container, header, form. In the form there is the labels for username and password respectively
 followed by the submit button this has been styled by style.css which is shared in the same folder.
+on the main page this is called and the infor+mation input is exported to the props on the main page
 
 ### `Register`
 
 this is the Register component declared and created. This creates and renders the login part with
 the base container, header, form. In the form there is the labels for username, email and password respectively
 followed by the submit button this has been styled by style.css which is shared in the same folder.
+on the main page this is called and the infor+mation input is exported to the props on the main page.
+
+### `Functions shared between login and register` 
+
+const submitForm(event)
+once the form for either login or register is submitted the data input is sent to the main app
+to it's submitssion.
+
+onChange(event)
+saves the information in the input and updates its current state.
 
 ### `RightSide`
 
@@ -343,8 +365,13 @@ as well as the Tetris (game) component.
 the browserRouter, Switch, Route, and Link are imported from react-router-dom
 the AboutPage and Instructions are both imported from the pages folder
 
-the app component is declared with propss and an internal state such as isLogginActive:true
-which is the switch for login and register
+the app component is declared with propss and an internal state such as isLogginActive: and isLoginScreen:,
+which are both switchs for login and register Active is for switching between login and register while 
+isLoggedIn:,
+is the switch for the userstat display.
+Users: is also inside which are arrays that carry the user data and information.
+
+
 
 changeState() is the part that handles switch the states back and forth between login and register
 
@@ -363,8 +390,36 @@ side of the screen.
 
 on the bottom right is the login class with the class container that holds both
 the login and register pieces with the RightSide being called afterward to cover the switch
-on click.    
+on click.   
 
+Login operates in the way that the user information that is saved in state is checked and if it matches that information 
+is called and displays the user stats in the stat display that is called once its successful. 
+
+Register operates in such that it will take what is input under username and password but there is validation for email and a 
+proper email address must be input. As the same with login once successful the display from login will change to match the username 
+created but the highscore will be 0.
+
+The userstat board will display upon susscessful login or register and will display the information such as highscore and username
+with the logout button at the bottom. This button will bring the login/register screen.
+
+
+ ### `Functions`
+ 
+  changeLoggedOut ()
+  
+  This function will switch the states to switch back to the login screen  
+  
+submitForm = ( username, password , email )
+This function runs much after the sbumitbutton has been pressed.
+What happens is that the input information is then compared and checks if the email is null or not. 
+
+if null(login) then what then happens is that the users in the state is checked and if theres a match
+then the information is retreived and the states are changed to switch to the UserStat display.
+
+else (register) in which case the information is saved to state and is then pushed to the users array
+and then the conditions to login is switched to show the UserStat display.   
+
+if there is no match in the login part there will be an alert that says user not found.
 
 # gameHelpers.js
 
