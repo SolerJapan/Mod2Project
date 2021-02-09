@@ -52,7 +52,7 @@ export class Login extends Component {
                    <input type="text" id="username" name="username"  
                     onChange={this.onChange} value={this.state.username} placeholder="username"/>
                    <label htmlFor="password">Password: </label>
-                   <input type="text" name="password" id="password" 
+                   <input type="password" name="password" id="password" 
                     onChange={this.onChange} value={this.state.password} placeholder="password"/>
                    <button type ="submit" className="submitbtn" >Login</button>
                 </form>
