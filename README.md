@@ -2,6 +2,10 @@
 
 Mod 2 final project (Tetris with login)
 
+Interesting detail about the history of tetris 
+
+https://www.youtube.com/watch?v=_fQtxKmgJC8 : gaming historian tetris. 
+
 1/29/2021: pause button has been added
 
 # Purpose of the Project
